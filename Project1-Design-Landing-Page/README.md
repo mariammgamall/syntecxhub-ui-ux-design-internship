@@ -142,4 +142,4 @@ To make sure the project works perfectly, check the following flows:
 ## ✍️ Author
 
 **Mariam Gamal**  
-*SyntecxHub Landing Page & Spec Spec Workspace (Project 1)*
+*SyntecxHub Landing Page & Design Spec Workspace (Project 1)*
