@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex — Design Handoff & Spec Workspace</title>
+  <meta name="description" content="Interactive Design Handoff Spec Sheet and Living Component Library for Apex SaaS Landing Page.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/landing-page.css">
+  <link rel="stylesheet" href="styles/components-view.css">
+  <link rel="stylesheet" href="styles/inspect-view.css?v=1.0.2">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- WORKSPACE HEADER -->
+    <header class="workspace-header">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
+          </svg>
+        </div>
+        <span class="logo-text">Apex</span>
+        <span class="logo-badge">Design Hub</span>
+      </div>
+
+      <!-- Tab Buttons -->
+      <nav class="tab-navigation">
+        <button class="tab-btn active" data-tab="live-demo">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Interactive Demo
+        </button>
+        <button class="tab-btn" data-tab="components">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Component Board
+        </button>
+        <button class="tab-btn" data-tab="inspect">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          Developer Inspect
+        </button>
+      </nav>
+
+      <!-- Toolbar Right Actions -->
+      <div class="header-actions">
+        <button class="action-btn" id="btn-export-assets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Export Assets (SVG/PNG)
+        </button>
+        <button class="action-btn primary" id="btn-share">Share Spec</button>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="workspace-content">
+
+      <!-- TAB 1: INTERACTIVE DEMO (VIEWPORT SIMULATOR) -->
+      <div class="workspace-panel active" id="live-demo-panel">
+        <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+          
+          <!-- Simulator Sub-Toolbar -->
+          <div class="simulator-toolbar" style="height: 48px; background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 var(--space-4); flex-shrink: 0;">
+            <div class="viewport-buttons" style="display: flex; gap: 8px;">
+              <button class="action-btn active" id="viewport-desktop-btn" style="padding: 6px 12px; font-size: 12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Desktop (1440px)
+              </button>
+              <button class="action-btn" id="viewport-tablet-btn" style="padding: 6px 12px; font-size: 12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                Tablet (768px)
+              </button>
+              <button class="action-btn" id="viewport-mobile-btn" style="padding: 6px 12px; font-size: 12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="19" x2="12.01" y2="19"/></svg>
+                Mobile (375px)
+              </button>
+              <button class="action-btn" id="btn-toggle-grid" style="padding: 6px 12px; font-size: 12px; margin-left: var(--space-2);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;"><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="2 2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+                Layout Grid
+              </button>
+            </div>
+            
+            <div class="viewport-dimensions" style="font-family: monospace; font-size: 12px; color: var(--text-secondary);">
+              Canvas Size: <span id="current-width" style="color: var(--text-primary); font-weight: 600;">1440</span> x <span id="current-height" style="color: var(--text-primary); font-weight: 600;">820</span> px
+            </div>
+
+            <div style="font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+              <span style="background: rgba(16, 185, 129, 0.1); color: var(--color-success); padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 10px;">Prototype Active</span>
+            </div>
+          </div>
+
+          <!-- Central Canvas Area -->
+          <div class="inspect-canvas-wrapper" style="flex: 1; padding: var(--space-8); display: flex; align-items: center; justify-content: center; position: relative;">
+            <div id="viewport-canvas" class="viewport-desktop" style="width: 100%; max-width: 1440px; height: 100%; border: 1px solid var(--border-color); border-radius: var(--radius-m); background-color: var(--bg-dark); overflow-y: auto; transition: var(--transition-smooth);">
+              <!-- Landing page cloned here via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: COMPONENT LIBRARY BOARD -->
+      <div class="workspace-panel" id="components-panel">
+        <div class="components-board">
+          <div class="components-section-title">
+            <h2>System Component Library</h2>
+            <p>Interactive Figma components with Auto Layout specifications mapped to standard CSS declarations.</p>
+          </div>
+
+          <div class="components-grid">
+            
+            <!-- Component 1: Primary Button -->
+            <div class="component-showcase-card">
+              <div class="showcase-header">
+                <div class="showcase-title-area">
+                  <h3>Button / Primary</h3>
+                  <p>Main call-to-action button, responsive sizes, hover transition, disabled state</p>
+                </div>
+                <div class="figma-tag">
+                  <svg viewBox="0 0 384 512"><path d="M181.3 324.5V208.6l-50.6 57.9 50.6 58zM0 64C0 28.7 28.7 0 64 0h256c35.3 0 64 28.7 64 64v384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm181.3 144.6h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V208.6zM256.7 96h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V96zm0 227.1h-54.7v109.4h54.7c30.3 0 54.7-24.5 54.7-54.7v-54.7c0-30.2-24.5-54.7-54.7-54.7z"/></svg>
+                  Auto Layout
+                </div>
+              </div>
+              <div class="showcase-body">
+                <div class="showcase-preview-canvas">
+                  <div class="variant-grid">
+                    <div class="variant-item">
+                      <span class="variant-label">Default</span>
+                      <button class="btn-primary">Get Started</button>
+                    </div>
+                    <div class="variant-item">
+                      <span class="variant-label">Hover (Previewed)</span>
+                      <button class="btn-primary" style="background: var(--brand-primary-hover); border-color: var(--brand-primary-hover); box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); transform: translateY(-1px);">Get Started</button>
+                    </div>
+                    <div class="variant-item">
+                      <span class="variant-label">Disabled</span>
+                      <button class="btn-primary" disabled>Get Started</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="showcase-details">
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Spacing Mode</span><span class="spec-value">Auto Layout (Flex)</span></div>
+                    <div class="spec-item"><span class="spec-label">Gap</span><span class="spec-value">8px (--space-1)</span></div>
+                    <div class="spec-item"><span class="spec-label">Padding</span><span class="spec-value">16px 24px</span></div>
+                  </div>
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Corner Radius</span><span class="spec-value token">12px (--radius-m)</span></div>
+                    <div class="spec-item"><span class="spec-label">Background</span><span class="spec-value token">#7C3AED (--brand-primary)</span></div>
+                    <div class="spec-item"><span class="spec-label">Typography</span><span class="spec-value">Inter 14px SemiBold</span></div>
+                  </div>
+                </div>
+                <div class="code-panel">
+                  <div class="code-tabs"><button class="code-tab-btn active">HTML</button><button class="code-tab-btn">CSS</button></div>
+                  <pre class="code-content" data-lang="html">&lt;button class="btn-primary"&gt;Get Started&lt;/button&gt;</pre>
+                  <pre class="code-content" data-lang="css" style="display:none;">.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--brand-primary);
+  border-radius: var(--radius-m);
+  font-family: var(--font-family-body);
+  font-size: var(--font-button);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Component 2: Secondary Button -->
+            <div class="component-showcase-card">
+              <div class="showcase-header">
+                <div class="showcase-title-area">
+                  <h3>Button / Secondary</h3>
+                  <p>Alternative outline buttons, ghost indicators, dark styling overlays</p>
+                </div>
+                <div class="figma-tag">
+                  <svg viewBox="0 0 384 512"><path d="M181.3 324.5V208.6l-50.6 57.9 50.6 58zM0 64C0 28.7 28.7 0 64 0h256c35.3 0 64 28.7 64 64v384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm181.3 144.6h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V208.6zM256.7 96h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V96zm0 227.1h-54.7v109.4h54.7c30.3 0 54.7-24.5 54.7-54.7v-54.7c0-30.2-24.5-54.7-54.7-54.7z"/></svg>
+                  Auto Layout
+                </div>
+              </div>
+              <div class="showcase-body">
+                <div class="showcase-preview-canvas">
+                  <div class="variant-grid">
+                    <div class="variant-item">
+                      <span class="variant-label">Default</span>
+                      <button class="btn-secondary">Watch Demo</button>
+                    </div>
+                    <div class="variant-item">
+                      <span class="variant-label">Hover (Previewed)</span>
+                      <button class="btn-secondary" style="background: var(--bg-dark-card-hover); border-color: var(--border-color-hover); transform: translateY(-1px);">Watch Demo</button>
+                    </div>
+                    <div class="variant-item">
+                      <span class="variant-label">Disabled</span>
+                      <button class="btn-secondary" disabled>Watch Demo</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="showcase-details">
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Spacing Mode</span><span class="spec-value">Auto Layout (Flex)</span></div>
+                    <div class="spec-item"><span class="spec-label">Gap</span><span class="spec-value">8px (--space-1)</span></div>
+                    <div class="spec-item"><span class="spec-label">Padding</span><span class="spec-value">16px 24px</span></div>
+                  </div>
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Corner Radius</span><span class="spec-value token">12px (--radius-m)</span></div>
+                    <div class="spec-item"><span class="spec-label">Background</span><span class="spec-value token">Transparent Surface</span></div>
+                    <div class="spec-item"><span class="spec-label">Border</span><span class="spec-value">1px solid var(--border-color)</span></div>
+                  </div>
+                </div>
+                <div class="code-panel">
+                  <div class="code-tabs"><button class="code-tab-btn active">HTML</button><button class="code-tab-btn">CSS</button></div>
+                  <pre class="code-content" data-lang="html">&lt;button class="btn-secondary"&gt;Watch Demo&lt;/button&gt;</pre>
+                  <pre class="code-content" data-lang="css" style="display:none;">.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-m);
+  font-family: var(--font-family-body);
+  font-size: var(--font-button);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Component 3: Feature Card -->
+            <div class="component-showcase-card">
+              <div class="showcase-header">
+                <div class="showcase-title-area">
+                  <h3>Card / Feature</h3>
+                  <p>Flexible information containers, icon wrappers, subtle gradient borders on hover</p>
+                </div>
+                <div class="figma-tag">
+                  <svg viewBox="0 0 384 512"><path d="M181.3 324.5V208.6l-50.6 57.9 50.6 58zM0 64C0 28.7 28.7 0 64 0h256c35.3 0 64 28.7 64 64v384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm181.3 144.6h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V208.6zM256.7 96h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V96zm0 227.1h-54.7v109.4h54.7c30.3 0 54.7-24.5 54.7-54.7v-54.7c0-30.2-24.5-54.7-54.7-54.7z"/></svg>
+                  Auto Layout
+                </div>
+              </div>
+              <div class="showcase-body">
+                <div class="showcase-preview-canvas" style="justify-content: space-around;">
+                  <div class="feature-card" style="width: 280px; pointer-events: none;">
+                    <div class="card-icon-wrapper">
+                      <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>AI Layout Engine</h3>
+                    <p>Describe your design and Apex builds auto layout frames automatically.</p>
+                  </div>
+                  <div class="feature-card" style="width: 280px; transform: translateY(-4px); border-color: rgba(255,255,255,0.15); background: var(--bg-dark-card-hover); box-shadow: 0 12px 30px rgba(0,0,0,0.4);">
+                    <div class="card-icon-wrapper" style="background: var(--brand-primary-alpha); border-color: var(--brand-primary); color: var(--brand-primary-hover);">
+                      <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>AI Layout Engine</h3>
+                    <p>Describe your design and Apex builds auto layout frames automatically.</p>
+                    <span style="position:absolute; bottom:8px; right:12px; font-size:9px; color:var(--brand-secondary); font-weight:600;">HOVER STATE</span>
+                  </div>
+                </div>
+                <div class="showcase-details">
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Layout Direction</span><span class="spec-value">Vertical (Column)</span></div>
+                    <div class="spec-item"><span class="spec-label">Gap</span><span class="spec-value">24px (--space-3)</span></div>
+                    <div class="spec-item"><span class="spec-label">Padding</span><span class="spec-value">40px (--space-5)</span></div>
+                  </div>
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Corner Radius</span><span class="spec-value token">20px (--radius-l)</span></div>
+                    <div class="spec-item"><span class="spec-label">Border</span><span class="spec-value">1px solid var(--border-color)</span></div>
+                    <div class="spec-item"><span class="spec-label">Elevated Hover</span><span class="spec-value">TranslateY(-6px)</span></div>
+                  </div>
+                </div>
+                <div class="code-panel">
+                  <div class="code-tabs"><button class="code-tab-btn active">HTML</button><button class="code-tab-btn">CSS</button></div>
+                  <pre class="code-content" data-lang="html">&lt;div class="feature-card"&gt;
+  &lt;div class="card-icon-wrapper"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;h3&gt;AI Layout Engine&lt;/h3&gt;
+  &lt;p&gt;Describe your design and Apex builds auto layout frames automatically.&lt;/p&gt;
+&lt;/div&gt;</pre>
+                  <pre class="code-content" data-lang="css" style="display:none;">.feature-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  padding: var(--space-5);
+  border-radius: var(--radius-l);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  transition: var(--transition-smooth);
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: var(--bg-dark-card-hover);
+}</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Component 4: Navigation Bar -->
+            <div class="component-showcase-card">
+              <div class="showcase-header">
+                <div class="showcase-title-area">
+                  <h3>Navigation Bar</h3>
+                  <p>Flexible header wrapper, responsive navigation lists, glass backdrop filters</p>
+                </div>
+                <div class="figma-tag">
+                  <svg viewBox="0 0 384 512"><path d="M181.3 324.5V208.6l-50.6 57.9 50.6 58zM0 64C0 28.7 28.7 0 64 0h256c35.3 0 64 28.7 64 64v384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm181.3 144.6h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V208.6zM256.7 96h-54.7c-30.3 0-54.7 24.5-54.7 54.7v54.7c0 30.3 24.5 54.7 54.7 54.7h54.7V96zm0 227.1h-54.7v109.4h54.7c30.3 0 54.7-24.5 54.7-54.7v-54.7c0-30.2-24.5-54.7-54.7-54.7z"/></svg>
+                  Auto Layout
+                </div>
+              </div>
+              <div class="showcase-body">
+                <div class="showcase-preview-canvas">
+                  <div class="nav-showcase-wrapper">
+                    <header class="landing-nav">
+                      <div class="logo-section">
+                        <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z"/></svg></div>
+                        <span class="logo-text">Apex</span>
+                      </div>
+                      <ul class="nav-links">
+                        <li><a>Features</a></li>
+                        <li><a>Methodology</a></li>
+                        <li><a>Pricing</a></li>
+                      </ul>
+                      <div class="nav-actions">
+                        <button class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Get Started</button>
+                      </div>
+                    </header>
+                  </div>
+                </div>
+                <div class="showcase-details">
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Spacing Mode</span><span class="spec-value">Horizontal (Row)</span></div>
+                    <div class="spec-item"><span class="spec-label">Alignment</span><span class="spec-value">Space-between, Center</span></div>
+                    <div class="spec-item"><span class="spec-label">Padding</span><span class="spec-value">0 80px (--space-10)</span></div>
+                  </div>
+                  <div class="spec-list">
+                    <div class="spec-item"><span class="spec-label">Height</span><span class="spec-value">80px</span></div>
+                    <div class="spec-item"><span class="spec-label">Backdrop Filter</span><span class="spec-value token">Blur 16px</span></div>
+                    <div class="spec-item"><span class="spec-label">Border</span><span class="spec-value">1px solid var(--border-color)</span></div>
+                  </div>
+                </div>
+                <div class="code-panel">
+                  <div class="code-tabs"><button class="code-tab-btn active">HTML</button><button class="code-tab-btn">CSS</button></div>
+                  <pre class="code-content" data-lang="html">&lt;header class="landing-nav"&gt;
+  &lt;div class="logo-section"&gt;
+    &lt;div class="logo-icon"&gt;...&lt;/div&gt;
+    &lt;span class="logo-text"&gt;Apex&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;ul class="nav-links"&gt;
+    &lt;li&gt;&lt;a href="#features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#methodology"&gt;Methodology&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#pricing"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class="nav-actions"&gt;
+    &lt;button class="btn-primary"&gt;Get Started&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre>
+                  <pre class="code-content" data-lang="css" style="display:none;">.landing-nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--space-10);
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+}</pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: DEVELOPER INSPECT -->
+      <div class="workspace-panel" id="inspect-panel">
+        <div class="inspect-workspace">
+          
+          <!-- LEFT SIDEBAR: TOKEN PALETTES -->
+          <aside class="inspect-sidebar-left">
+            
+            <!-- Colors Spec -->
+            <div class="inspect-sidebar-block">
+              <h4 class="sidebar-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M12 6V12L16 14"/></svg>
+                Color Swatches
+              </h4>
+              <div class="swatches-list">
+                <div class="swatch-item" data-color="#7C3AED">
+                  <div class="swatch-color" style="background: var(--brand-primary);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Brand Primary</span>
+                    <span class="swatch-val">#7C3AED</span>
+                  </div>
+                </div>
+                <div class="swatch-item" data-color="#06B6D4">
+                  <div class="swatch-color" style="background: var(--brand-secondary);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Brand Secondary</span>
+                    <span class="swatch-val">#06B6D4</span>
+                  </div>
+                </div>
+                <div class="swatch-item" data-color="#090D16">
+                  <div class="swatch-color" style="background: var(--bg-dark);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Neutral Background</span>
+                    <span class="swatch-val">#090D16</span>
+                  </div>
+                </div>
+                <div class="swatch-item" data-color="#F9FAFB">
+                  <div class="swatch-color" style="background: var(--text-primary);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Text Primary</span>
+                    <span class="swatch-val">#F9FAFB</span>
+                  </div>
+                </div>
+                <div class="swatch-item" data-color="#9CA3AF">
+                  <div class="swatch-color" style="background: var(--text-secondary);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Text Secondary</span>
+                    <span class="swatch-val">#9CA3AF</span>
+                  </div>
+                </div>
+                <div class="swatch-item" data-color="#10B981">
+                  <div class="swatch-color" style="background: var(--color-success);"></div>
+                  <div class="swatch-info">
+                    <span class="swatch-name">Semantic Success</span>
+                    <span class="swatch-val">#10B981</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Typography Spec -->
+            <div class="inspect-sidebar-block">
+              <h4 class="sidebar-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+                Type Scale
+              </h4>
+              <div class="type-scale-list">
+                <div class="type-item">
+                  <div class="type-header"><span class="type-tag">Header 1</span><span class="type-size">64px / 1.1</span></div>
+                  <div class="type-preview">Hero Headline Text</div>
+                </div>
+                <div class="type-item">
+                  <div class="type-header"><span class="type-tag">Header 2</span><span class="type-size">40px / 1.2</span></div>
+                  <div class="type-preview">Section Titles</div>
+                </div>
+                <div class="type-item">
+                  <div class="type-header"><span class="type-tag">Header 3</span><span class="type-size">20px / 1.4</span></div>
+                  <div class="type-preview">Component Card Headings</div>
+                </div>
+                <div class="type-item body-font">
+                  <div class="type-header"><span class="type-tag">Body</span><span class="type-size">16px / 1.6</span></div>
+                  <div class="type-preview">Interactive body text blocks.</div>
+                </div>
+                <div class="type-item body-font">
+                  <div class="type-header"><span class="type-tag">Button</span><span class="type-size">14px / 1.2</span></div>
+                  <div class="type-preview">Interactive Buttons</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- MIDDLE SPEC CANVAS -->
+          <div class="inspect-canvas-wrapper" style="flex: 1; min-width: 0; overflow: auto; display: block; position: relative;">
+            <div class="inspect-canvas" id="inspect-canvas-viewport" style="width: 1440px; flex-shrink: 0; margin: 0 auto; position: relative;">
+              <!-- Overlay layer handles hovers, overlays and spacing calculations -->
+              <div class="inspect-overlay" id="inspect-overlay-container">
+                <!-- Hover outline box -->
+                <div class="hover-outline-box" id="hover-outline">
+                  <span class="inspect-dimension-tooltip" id="hover-tooltip">0 x 0</span>
+                </div>
+                <!-- Selection outline box -->
+                <div class="select-outline-box" id="select-outline">
+                  <span class="inspect-dimension-tooltip" id="select-tooltip">0 x 0</span>
+                </div>
+                <!-- Spacing guides will be spawned dynamically here -->
+                <div id="spacing-guides-box"></div>
+              </div>
+              <div id="inspect-canvas-content">
+                <!-- Landing page cloned here via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDEBAR: CODE INSPECTOR -->
+          <aside class="inspect-sidebar-right" id="inspect-sidebar-right">
+            <div class="selection-empty-state" id="inspect-empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+              </svg>
+              <p>Select any element on the canvas to inspect layout and styles</p>
+            </div>
+
+            <!-- Inspect Details Box (Hidden by default, shown when selected) -->
+            <div class="inspect-detail-block" id="inspect-details" style="display: none;">
+              <div>
+                <h4 id="inspect-elem-tag" style="font-family: monospace; font-size: 14px; color: var(--brand-secondary); font-weight: 700;">div.feature-card</h4>
+                <p id="inspect-elem-role" style="font-size: 11px; color: var(--text-muted);">Selected Component Node</p>
+              </div>
+
+              <!-- Dimensions Box model -->
+              <div class="box-model-container">
+                <span class="box-model-label">Layout Properties</span>
+                <div class="box-model-grid">
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-width">0px</span>
+                    <span class="box-model-title">Width</span>
+                  </div>
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-height">0px</span>
+                    <span class="box-model-title">Height</span>
+                  </div>
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-radius">0px</span>
+                    <span class="box-model-title">Radius</span>
+                  </div>
+                </div>
+                <div class="box-model-grid" style="margin-top: 4px;">
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-padding">0px</span>
+                    <span class="box-model-title">Padding</span>
+                  </div>
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-margin">0px</span>
+                    <span class="box-model-title">Margin</span>
+                  </div>
+                  <div class="box-model-cell">
+                    <span class="box-model-val" id="spec-gap">-</span>
+                    <span class="box-model-title">Gap</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Typography specs -->
+              <div class="inspect-sidebar-block" id="block-typography">
+                <h4 class="sidebar-section-title">Typography</h4>
+                <div class="spec-list">
+                  <div class="spec-item"><span class="spec-label">Font Family</span><span class="spec-value" id="spec-font-family">-</span></div>
+                  <div class="spec-item"><span class="spec-label">Font Size</span><span class="spec-value" id="spec-font-size">-</span></div>
+                  <div class="spec-item"><span class="spec-label">Font Weight</span><span class="spec-value" id="spec-font-weight">-</span></div>
+                  <div class="spec-item"><span class="spec-label">Line Height</span><span class="spec-value" id="spec-line-height">-</span></div>
+                </div>
+              </div>
+
+              <!-- Styling specs -->
+              <div class="inspect-sidebar-block" id="block-styling">
+                <h4 class="sidebar-section-title">Fill & Stroke</h4>
+                <div class="spec-list">
+                  <div class="spec-item"><span class="spec-label">Color</span><span class="spec-value" id="spec-text-color">-</span></div>
+                  <div class="spec-item"><span class="spec-label">Background</span><span class="spec-value" id="spec-bg-color">-</span></div>
+                  <div class="spec-item"><span class="spec-label">Border</span><span class="spec-value" id="spec-border">-</span></div>
+                </div>
+              </div>
+
+              <!-- Export / Code spec -->
+              <div class="inspect-sidebar-block">
+                <h4 class="sidebar-section-title">CSS Declarations</h4>
+                <div class="code-panel" style="margin-top: 0;">
+                  <pre class="code-content" id="spec-css-code" style="max-height: 280px;"></pre>
+                </div>
+              </div>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- SUCCESS DIALOG MODAL (PROTOTYPE GOAL SUCCESS SCREEN) -->
+  <div class="modal-overlay" id="prototype-success-modal">
+    <div class="success-modal">
+      <div class="success-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3>Welcome to Apex!</h3>
+      <p>Your workspace is being generated at this moment. We have sent a confirmation email with magic setup instructions. Let's design at lightspeed!</p>
+      <button class="btn-primary" id="btn-success-reset">Go back to Workspace</button>
+    </div>
+  </div>
+
+  <!-- LANDING PAGE HTML TEMPLATE (Shared by simulator and inspect sheets) -->
+  <template id="landing-page-template">
+    <div class="landing-page-root">
+      
+      <!-- Layout Grid Columns (Toggled visually) -->
+      <div class="grid-overlay" id="layout-grid-columns" style="display: none;">
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+      </div>
+
+      <!-- Glow Blobs background elements -->
+      <div class="glow-blob blob-1"></div>
+      <div class="glow-blob blob-2"></div>
+      <div class="glow-blob blob-3"></div>
+
+      <!-- HEADER NAVIGATION -->
+      <header class="landing-nav" id="nav-element">
+        <div class="logo-section">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
+            </svg>
+          </div>
+          <span class="logo-text">Apex</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#features-target">Features</a></li>
+          <li><a href="#cta-target">Workspace</a></li>
+          <li><a id="nav-pricing-link">Pricing</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn-primary btn-landing-cta" style="padding: 10px 20px; font-size: 13px;">Get Started</button>
+        </div>
+      </header>
+
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero-element">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span></span> Powered by Apex AI v2.0
+          </div>
+          <h1>Design at the speed of thought.</h1>
+          <p>Apex combines an intelligent layout engine, real-time multiplayer co-editing, and automated design-to-code pipelines into one beautiful, lightning-fast workspace.</p>
+          <div class="hero-actions">
+            <button class="btn-primary btn-landing-cta">Start Designing Free</button>
+            <button class="btn-secondary" id="hero-demo-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Watch Demo
+            </button>
+          </div>
+        </div>
+        
+        <div class="hero-graphic">
+          <div class="canvas-mockup">
+            <div class="canvas-grid"></div>
+            <!-- Canvas elements simulating Auto-Layout -->
+            <div class="canvas-element element-node-1">
+              <span style="font-size: 11px; font-weight: 600; color: #818CF8;">Auto Layout</span>
+              <!-- Auto layout outline visual guides -->
+              <span style="position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px; border: 1px dashed var(--brand-primary); border-radius: inherit;"></span>
+            </div>
+            <div class="canvas-element element-node-2">
+              <span style="font-size: 11px; font-weight: 600; color: #22D3EE;">Responsive Grid</span>
+              <span style="position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px; border: 1px dashed var(--brand-secondary); border-radius: inherit;"></span>
+            </div>
+            <!-- Animated cursor simulation -->
+            <div class="canvas-cursor">
+              <div class="cursor-pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--brand-primary)" stroke="white" stroke-width="1.5">
+                  <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+                </svg>
+                <div class="cursor-badge">Mariam (Designer)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES SECTION -->
+      <section class="features-section" id="features-target">
+        <div class="section-header">
+          <h2 id="features-heading">Engineered for modern design teams</h2>
+          <p>Visual layout systems that map directly to high-fidelity code structures. No manual pixel positioning.</p>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Card 1 -->
+          <div class="feature-card">
+            <div class="card-icon-wrapper">
+              <svg viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 3v18M3 12h18M12 9l-4 4 4 4"/>
+              </svg>
+            </div>
+            <h3>AI Layout Engine</h3>
+            <p>Describe your vision in plain English. Apex automatically creates standards-compliant flexbox frames and layouts.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card">
+            <div class="card-icon-wrapper">
+              <svg viewBox="0 0 24 24" stroke="currentColor">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
+                <line x1="9" y1="3" x2="9" y2="21"/>
+                <line x1="15" y1="3" x2="15" y2="21"/>
+              </svg>
+            </div>
+            <h3>Smart Auto Layout</h3>
+            <p>Build layouts visually using structural guidelines. Set paddings, margins, alignment, and gaps that translate straight to clean CSS code.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card">
+            <div class="card-icon-wrapper">
+              <svg viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Multiplayer Presence</h3>
+            <p>Design concurrently with your team in real time. Experience sub-millisecond cursor replication, comments, and project branch syncs.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CALL TO ACTION (CTA) SECTION -->
+      <section class="cta-section" id="cta-target">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2>Ready to transform your workflow?</h2>
+            <p>Claim your free workspace today. Create responsive pages, export spec specs, and connect design to code seamlessly.</p>
+            
+            <form class="cta-form" id="landing-email-form" onsubmit="return false;">
+              <div class="input-wrapper">
+                <input type="email" placeholder="Enter your work email..." class="cta-input" id="landing-email-input" required>
+                <span class="error-message" id="email-error-text">Please enter a valid email address</span>
+              </div>
+              <button class="btn-primary" type="submit" id="btn-submit-signup">Get Started Free</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANDING FOOTER -->
+      <footer class="landing-footer" id="footer-element">
+        <span>&copy; 2026 Apex Design Technologies, Inc. All rights reserved.</span>
+        <div style="display: flex; gap: var(--space-4);">
+          <a id="footer-terms-link" style="cursor:pointer;">Terms of Service</a>
+          <a id="footer-privacy-link" style="cursor:pointer;">Privacy Policy</a>
+        </div>
+      </footer>
+
+    </div>
+  </template>
+
+  <script src="scripts/main.js?v=1.0.2"></script>
+</body>
+</html>

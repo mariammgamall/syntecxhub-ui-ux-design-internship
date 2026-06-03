@@ -1,0 +1,307 @@
+/* --- TYPOGRAPHY FONTS LOADED IN HTML --- */
+
+/* --- DESIGN TOKENS (CSS VARIABLES) --- */
+:root {
+  /* Colors */
+  --brand-primary: hsla(263, 85%, 60%, 1);        /* Violet #7C3AED */
+  --brand-primary-hover: hsla(263, 85%, 65%, 1);  /* #8B5CF6 */
+  --brand-primary-active: hsla(263, 85%, 52%, 1); /* #6D28D9 */
+  --brand-primary-alpha: hsla(263, 85%, 60%, 0.15);
+  
+  --brand-secondary: hsla(180, 85%, 50%, 1);      /* Cyan #06B6D4 */
+  --brand-secondary-hover: hsla(180, 85%, 58%, 1);
+  --brand-secondary-alpha: hsla(180, 85%, 50%, 0.15);
+  
+  --bg-dark: hsla(220, 30%, 6%, 1);               /* Deep Space Navy #080C14 */
+  --bg-dark-surface: hsla(220, 25%, 10%, 1);       /* Surface dark #111827 */
+  --bg-dark-card: rgba(255, 255, 255, 0.03);      /* Translucent surface */
+  --bg-dark-card-hover: rgba(255, 255, 255, 0.06);
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-hover: rgba(255, 255, 255, 0.15);
+  --border-color-focus: hsla(263, 85%, 60%, 0.5);
+  
+  --text-primary: #F9FAFB;                         /* Off-white */
+  --text-secondary: #9CA3AF;                       /* Cool gray */
+  --text-muted: #6B7280;                           /* Dim gray */
+  
+  --color-success: #10B981;                        /* Emerald green */
+  --color-success-alpha: rgba(16, 185, 129, 0.15);
+  --color-error: #EF4444;                          /* Crimson red */
+  --color-error-alpha: rgba(239, 68, 68, 0.15);
+  --color-disabled: #374151;                       /* Slate gray */
+  
+  /* Fonts */
+  --font-family-display: 'Outfit', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  
+  /* Typography Scale */
+  --font-h1: 4rem;      /* 64px */
+  --font-h2: 2.5rem;    /* 40px */
+  --font-h3: 1.25rem;   /* 20px */
+  --font-body: 1rem;    /* 16px */
+  --font-button: 0.875rem; /* 14px */
+  --font-caption: 0.75rem; /* 12px */
+  
+  /* Typography Scale - Tablet */
+  --font-h1-tablet: 3rem;     /* 48px */
+  --font-h2-tablet: 2rem;     /* 32px */
+  
+  /* Typography Scale - Mobile */
+  --font-h1-mobile: 2.25rem;  /* 36px */
+  --font-h2-mobile: 1.75rem;  /* 28px */
+  
+  /* 8pt Spacing Grid System */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-16: 128px;
+  
+  /* Radius */
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --radius-xl: 32px;
+  --radius-round: 9999px;
+  
+  /* Transitions & Animation */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+  
+  /* Shadows */
+  --shadow-glow: 0 0 40px -10px hsla(263, 85%, 60%, 0.3);
+  --shadow-glow-cyan: 0 0 40px -10px hsla(180, 85%, 50%, 0.3);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- RESET & BASE STYLES --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Scrollbar Style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-round);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color-hover);
+}
+
+/* --- WORKSPACE LAYOUT --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Top Toolbar */
+.workspace-header {
+  height: 64px;
+  background-color: var(--bg-dark-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--space-4);
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: var(--radius-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+.logo-text {
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 60%, var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-badge {
+  background: var(--brand-primary-alpha);
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary-hover);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-s);
+  text-transform: uppercase;
+}
+
+/* Navigation Tabs */
+.tab-navigation {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+  background-color: var(--brand-primary);
+}
+
+.tab-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Right Header actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.action-btn {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-m);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.action-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-color-hover);
+  background-color: var(--bg-dark-card-hover);
+}
+
+.action-btn.primary {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: white;
+}
+
+.action-btn.primary:hover {
+  background: var(--brand-primary-hover);
+}
+
+/* Main Workspace Canvas */
+.workspace-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-dark);
+}
+
+.workspace-panel {
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.workspace-panel.active {
+  display: flex;
+}
+
+/* Toast Notification styling */
+.toast-notification {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background: rgba(17, 24, 30, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--brand-secondary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-glow-cyan);
+  z-index: 2000;
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  font-weight: 500;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+
+.toast-notification.active {
+  transform: translateY(0);
+  opacity: 1;
+}
