@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenith ANC Headphones - Premium Product Details (Figma Simulation)</title>
+  <!-- Google Fonts: Outfit for headings, Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background decorative glows -->
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <span class="figma-badge">Figma Prototype</span>
+      <h1>Zenith ANC Wireless</h1>
+    </div>
+    <div class="header-controls">
+      <button id="toggle-inspector-btn" class="header-btn" title="Toggle Inspector Sidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span>Toggle Inspector</span>
+      </button>
+      <span class="status-indicator"><span class="pulse-dot"></span>Live Interaction Active</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- LEFT: PRODUCT DETAILS PAGE (PDP) -->
+    <main class="pdp-container">
+      <div class="pdp-inner">
+        <!-- 1. Product Images (Gallery Component) -->
+        <section class="gallery-section">
+          <!-- Main Image Container - Default Variant -->
+          <div class="main-image-wrapper" id="main-image-container">
+            <img id="main-image" src="./images/black-main.png" alt="Zenith ANC Headphone Main" />
+            <div class="zoom-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              <span>Tap to Zoom</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail Strip below main image -->
+          <div class="thumbnail-strip" id="thumbnail-strip">
+            <button class="thumb-btn active" data-index="0" data-src="./images/black-main.png">
+              <img src="./images/black-main.png" alt="Black Main" />
+            </button>
+            <button class="thumb-btn" data-index="1" data-src="./images/black-angle.png">
+              <img src="./images/black-angle.png" alt="Black Angle View" />
+            </button>
+            <button class="thumb-btn" data-index="2" data-src="./images/black-case.png">
+              <img src="./images/black-case.png" alt="Black Case View" />
+            </button>
+            <button class="thumb-btn" data-index="3" data-src="./images/gold-main.png">
+              <img src="./images/gold-main.png" alt="Gold Main" />
+            </button>
+          </div>
+        </section>
+
+        <!-- Product Details / Info Hierarchy -->
+        <section class="product-info-section">
+          <!-- Tag / Category -->
+          <div class="product-tag-row">
+            <span class="category-tag">Flagship Audio</span>
+            <div class="rating-stars">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="rating-val">4.9 (124 reviews)</span>
+            </div>
+          </div>
+
+          <!-- 2. Product Name -->
+          <h2 class="product-title" id="pdp-title">Zenith ANC Wireless Headphones</h2>
+
+          <!-- 3. Price (with sale price variant) -->
+          <div class="price-container" id="pdp-price-container">
+            <!-- Normal Price (Default State) -->
+            <div class="price-regular-only" id="price-regular-view">
+              <span class="currency">$</span><span class="price-val" id="pdp-regular-price-val">349.00</span>
+            </div>
+            <!-- Sale Price Variant (Active state of Sale boolean) -->
+            <div class="price-sale-active" id="price-sale-view" style="display: none;">
+              <span class="sale-price"><span class="currency">$</span><span class="price-val" id="pdp-sale-price-val">289.00</span></span>
+              <span class="original-price"><span class="currency">$</span><span class="price-val" id="pdp-original-price-val">349.00</span></span>
+              <span class="discount-badge" id="pdp-discount-badge">Save $60</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <hr class="pdp-divider" />
+
+          <!-- 4. Color Options -->
+          <div class="options-container">
+            <div class="option-header">
+              <span class="option-label">Color Swatch</span>
+              <span class="option-selected-value" id="selected-color-label">Stellar Black</span>
+            </div>
+            <div class="color-swatch-list">
+              <!-- Stellar Black -->
+              <button class="color-swatch-btn selected" data-color="black" data-color-name="Stellar Black" title="Stellar Black">
+                <span class="color-dot" style="background-color: #121214;"></span>
+                <span class="swatch-tooltip">Selected</span>
+              </button>
+              <!-- Aurora Gold -->
+              <button class="color-swatch-btn" data-color="gold" data-color-name="Aurora Gold" title="Aurora Gold">
+                <span class="color-dot" style="background-color: #e5cfb3;"></span>
+                <span class="swatch-tooltip">Default</span>
+              </button>
+              <!-- Platinum Silver -->
+              <button class="color-swatch-btn out-of-stock" data-color="silver" data-color-name="Platinum Silver" title="Platinum Silver (Out of Stock)">
+                <span class="color-dot" style="background-color: #d1d5db;"></span>
+                <span class="swatch-tooltip">Out of Stock</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. Size Options -->
+          <div class="options-container">
+            <div class="option-header">
+              <span class="option-label">Headband Size</span>
+              <span class="option-selected-value" id="selected-size-label">Comfort Fit</span>
+            </div>
+            <div class="size-selector-list">
+              <!-- Standard Fit (Default State) -->
+              <button class="size-btn" data-size="standard" data-size-name="Standard Fit">
+                Standard Fit
+                <span class="size-status-label">Default</span>
+              </button>
+              <!-- Comfort Fit (Selected State) -->
+              <button class="size-btn selected" data-size="comfort" data-size-name="Comfort Fit">
+                Comfort Fit
+                <span class="size-status-label">Selected</span>
+              </button>
+              <!-- Ultra Fit (Disabled State) -->
+              <button class="size-btn disabled" data-size="ultra" data-size-name="Ultra Fit" disabled>
+                Ultra Fit
+                <span class="size-status-label">Out of stock</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. Short Product Description -->
+          <div class="options-container">
+            <span class="option-label">Description</span>
+            <p class="product-description" id="pdp-description">
+              Experience absolute audio clarity. Engineered with next-gen active noise cancellation (ANC), custom 40mm dynamic drivers, and memory-foam cushions for up to 45 hours of immersive luxury listening.
+            </p>
+          </div>
+
+          <!-- 7. Add to Cart CTA — prominent placement for conversions -->
+          <div class="cta-container">
+            <button class="add-to-cart-btn" id="add-to-cart-cta">
+              <span class="btn-icon-wrapper" id="btn-icon-container">
+                <!-- Shopping Cart Icon (Default Instance Swap Option) -->
+                <svg id="icon-cart" class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <!-- Bag Icon (Instance Swap Option) -->
+                <svg id="icon-bag" class="btn-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <!-- Check Icon (Instance Swap Option) -->
+                <svg id="icon-check" class="btn-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="btn-spinner" id="btn-spinner" style="display: none;"></span>
+              <span class="btn-text" id="btn-text-content">Add to Cart</span>
+            </button>
+            <p class="cta-hint">Free express shipping & 30-day trial included.</p>
+          </div>
+
+          <!-- Highlight list of key features -->
+          <div class="highlights-grid">
+            <div class="highlight-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5cfb3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>2 Year Warranty</span>
+            </div>
+            <div class="highlight-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5cfb3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              <span>Travel Case Included</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- RIGHT: FIGMA INSPECTOR & DESIGN SYSTEM PROPERTIES PANEL -->
+    <aside class="figma-inspector">
+      <div class="inspector-header">
+        <div class="inspector-tab active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+          Design Properties
+        </div>
+        <div class="inspector-badge">Zenith_PDP</div>
+      </div>
+
+      <div class="inspector-body">
+        
+        <!-- Section: Component - Image Gallery -->
+        <div class="inspector-section">
+          <div class="section-title">
+            <span class="icon-component">◆</span> Component: Image Gallery
+          </div>
+          
+          <!-- Image Gallery Variant -->
+          <div class="property-row">
+            <label class="prop-label">Variant: State</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select" id="ctrl-gallery-state">
+                <option value="default">Default (Thumbnail Strip)</option>
+                <option value="zoomed">Zoomed (Full-bleed Overlay)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="prop-info-bubble">
+            <p><strong>Prototype Link:</strong> Tap/click the main product image to trigger the <code>Zoomed</code> variant overlay via <strong>Smart Animate</strong> (300ms ease-out).</p>
+          </div>
+        </div>
+
+        <!-- Section: Component - Product Info Texts -->
+        <div class="inspector-section">
+          <div class="section-title">
+            <span class="icon-component">◆</span> Component: Header & Info
+          </div>
+
+          <!-- Text property: Title -->
+          <div class="property-row">
+            <label class="prop-label">Text Property: Title</label>
+            <input type="text" class="prop-input" id="ctrl-product-title" value="Zenith ANC Wireless Headphones">
+          </div>
+
+          <!-- Text property: Description -->
+          <div class="property-row">
+            <label class="prop-label">Text Property: Description</label>
+            <textarea class="prop-textarea" id="ctrl-product-desc" rows="3">Experience absolute audio clarity. Engineered with next-gen active noise cancellation (ANC), custom 40mm dynamic drivers, and memory-foam cushions for up to 45 hours of immersive luxury listening.</textarea>
+          </div>
+        </div>
+
+        <!-- Section: Component - Price Indicator -->
+        <div class="inspector-section">
+          <div class="section-title">
+            <span class="icon-component">◆</span> Component: Price Card
+          </div>
+
+          <!-- Boolean property: On Sale -->
+          <div class="property-row">
+            <label class="prop-label">Boolean: On Sale</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="ctrl-price-sale" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Regular Price text input -->
+          <div class="property-row" id="ctrl-row-reg-price">
+            <label class="prop-label">Text: Regular Price</label>
+            <input type="text" class="prop-input" id="ctrl-reg-price" value="349.00">
+          </div>
+
+          <!-- Sale Price text input -->
+          <div class="property-row" id="ctrl-row-sale-price">
+            <label class="prop-label">Text: Sale Price</label>
+            <input type="text" class="prop-input" id="ctrl-sale-price" value="289.00">
+          </div>
+        </div>
+
+        <!-- Section: Component - Variant Configurator for Size/Color -->
+        <div class="inspector-section">
+          <div class="section-title">
+            <span class="icon-component">◆</span> Component: Color & Size Variants
+          </div>
+
+          <!-- Color swatches states selector -->
+          <div class="property-group-header">Color Swatches States</div>
+          
+          <div class="property-row nested">
+            <label class="prop-label-sm">Stellar Black</label>
+            <select class="prop-select-sm" id="ctrl-state-black">
+              <option value="default">Default</option>
+              <option value="selected" selected>Selected</option>
+              <option value="out-of-stock">Out of Stock</option>
+            </select>
+          </div>
+          
+          <div class="property-row nested">
+            <label class="prop-label-sm">Aurora Gold</label>
+            <select class="prop-select-sm" id="ctrl-state-gold">
+              <option value="default" selected>Default</option>
+              <option value="selected">Selected</option>
+              <option value="out-of-stock">Out of Stock</option>
+            </select>
+          </div>
+
+          <div class="property-row nested">
+            <label class="prop-label-sm">Platinum Silver</label>
+            <select class="prop-select-sm" id="ctrl-state-silver">
+              <option value="default">Default</option>
+              <option value="selected">Selected</option>
+              <option value="out-of-stock" selected>Out of Stock</option>
+            </select>
+          </div>
+
+          <!-- Size variants states selector -->
+          <div class="property-group-header">Size Selector States</div>
+          
+          <div class="property-row nested">
+            <label class="prop-label-sm">Standard Fit</label>
+            <select class="prop-select-sm" id="ctrl-state-size-standard">
+              <option value="default" selected>Default</option>
+              <option value="selected">Selected</option>
+              <option value="disabled">Disabled</option>
+            </select>
+          </div>
+          
+          <div class="property-row nested">
+            <label class="prop-label-sm">Comfort Fit</label>
+            <select class="prop-select-sm" id="ctrl-state-size-comfort">
+              <option value="default">Default</option>
+              <option value="selected" selected>Selected</option>
+              <option value="disabled">Disabled</option>
+            </select>
+          </div>
+
+          <div class="property-row nested">
+            <label class="prop-label-sm">Ultra Fit</label>
+            <select class="prop-select-sm" id="ctrl-state-size-ultra">
+              <option value="default">Default</option>
+              <option value="selected">Selected</option>
+              <option value="disabled" selected>Disabled</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section: Component - Add to Cart button -->
+        <div class="inspector-section">
+          <div class="section-title">
+            <span class="icon-component">◆</span> Component: Add to Cart CTA
+          </div>
+
+          <!-- Variant Property: Button State -->
+          <div class="property-row">
+            <label class="prop-label">Variant: State</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select" id="ctrl-btn-state">
+                <option value="default">Default</option>
+                <option value="loading">Loading (Spinner)</option>
+                <option value="success">Success (✓ Added)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Boolean property: Show Icon -->
+          <div class="property-row">
+            <label class="prop-label">Boolean: Show Icon</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="ctrl-btn-show-icon" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Instance Swap Property: Icon type -->
+          <div class="property-row" id="ctrl-row-btn-icon">
+            <label class="prop-label">Instance Swap: Icon</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select" id="ctrl-btn-icon-swap">
+                <option value="cart">instance: icon-shopping-cart</option>
+                <option value="bag">instance: icon-shopping-bag</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Text property: Button Text -->
+          <div class="property-row">
+            <label class="prop-label">Text: Button Label</label>
+            <input type="text" class="prop-input" id="ctrl-btn-text" value="Add to Cart">
+          </div>
+
+          <div class="prop-info-bubble">
+            <p><strong>Prototype Transition:</strong> Clicking "Add to Cart" on the product detail page runs the sequence: <code>Default</code> → <code>Loading</code> → <code>Success</code> and returns to Default automatically.</p>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Zoom Overlay / Full-bleed modal (Smart Animate target state for Zoomed gallery) -->
+  <div class="zoom-overlay" id="gallery-zoom-overlay">
+    <div class="zoom-overlay-content">
+      <img id="zoomed-image" src="./images/black-main.png" alt="Zoomed View" />
+      <button class="zoom-close-btn" id="zoom-close-btn" aria-label="Close Zoom View">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
