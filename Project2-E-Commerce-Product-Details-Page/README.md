@@ -85,10 +85,10 @@ Clicking the prominent gold-metallic gradient button triggers a multi-state sequ
 Showcases how variables and properties in the sidebar map directly to components on the page.
 
 #### Text Property Data Binding
-*   **Filename**: `14a_figma_property_text_binding..png`
+*   **Filename**: `14_figma_property_text_binding.png`
 *   **Description**: Typing a title or description into the text property box updates the PDP layout live.
 *   **Preview**:
-    ![Text Property Binding](./screenshots/14a_figma_property_text_binding..png)
+    ![Text Property Binding](./screenshots/14_figma_property_text_binding.png)
 
 #### Instance Swapping
 *   **Filename**: `15_figma_instance_swap_icon.png`
