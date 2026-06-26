@@ -1,0 +1,17 @@
+{
+  "name": "aether-analytics-dashboard",
+  "version": "1.0.0",
+  "description": "Premium, glassmorphic analytics web dashboard UI with real-time responsive charts.",
+  "scripts": {
+    "dev": "npx -y serve -l 3000 ."
+  },
+  "keywords": [
+    "dashboard",
+    "ui",
+    "analytics",
+    "glassmorphism",
+    "responsive"
+  ],
+  "author": "",
+  "license": "ISC"
+}

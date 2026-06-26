@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium, responsive, glassmorphic analytics dashboard featuring live interactive charts, KPI metrics, dynamic date filters, and drill-in detail panels.">
+    <title>Aether Analytics - Premium Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="dark-theme">
+    <!-- App Container -->
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <span class="brand-name">Aether</span>
+            </div>
+            
+            <nav class="sidebar-nav" id="main-nav">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-view="analytics">
+                    <span class="nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </span>
+                    <span class="nav-label">Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-view="users">
+                    <span class="nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </span>
+                    <span class="nav-label">Customers</span>
+                </a>
+                <a href="#" class="nav-item" data-view="transactions">
+                    <span class="nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    </span>
+                    <span class="nav-label">Sales Logs</span>
+                </a>
+                <a href="#" class="nav-item" data-view="settings">
+                    <span class="nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </span>
+                    <span class="nav-label">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle visual theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <span class="theme-toggle-label">Toggle Mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Display View -->
+        <main class="app-content">
+            <!-- Header Filter Actions -->
+            <header class="content-header">
+                <div class="header-welcome">
+                    <button class="mobile-sidebar-toggle" id="mobile-toggle" aria-label="Open navigation sidebar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <div>
+                        <h1 class="page-title">Executive Summary</h1>
+                        <p class="page-subtitle" id="current-range-label">Overview for the last 30 days</p>
+                    </div>
+                </div>
+
+                <!-- Global Actions / Filters Container -->
+                <div class="header-actions">
+                    <!-- Search Input -->
+                    <div class="search-box">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="global-search" placeholder="Search orders..." aria-label="Search logs">
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div class="filter-dropdown-container">
+                        <label for="category-filter" class="sr-only">Filter by Category</label>
+                        <select class="action-select" id="category-filter">
+                            <option value="all">All Verticals</option>
+                            <option value="Software">Software Products</option>
+                            <option value="Hardware">Hardware Supply</option>
+                            <option value="Consulting">Professional Consulting</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Filters -->
+                    <div class="filter-dropdown-container">
+                        <label for="status-filter" class="sr-only">Filter by Status</label>
+                        <select class="action-select" id="status-filter">
+                            <option value="all">All Statuses</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <!-- Date Range Dropdown Selector -->
+                    <div class="date-selector-wrapper">
+                        <button class="action-button date-dropdown-btn" id="date-range-trigger">
+                            <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <span id="active-date-preset">Last 30 Days</span>
+                        </button>
+                        
+                        <!-- Date range popup -->
+                        <div class="date-range-popup" id="date-range-menu">
+                            <div class="presets-list">
+                                <button class="preset-btn" data-preset="7d">Last 7 Days</button>
+                                <button class="preset-btn active" data-preset="30d">Last 30 Days</button>
+                                <button class="preset-btn" data-preset="90d">Last 90 Days</button>
+                                <button class="preset-btn" data-preset="custom">Custom Date...</button>
+                            </div>
+                            <div class="custom-dates-picker hidden" id="custom-inputs">
+                                <div class="input-group">
+                                    <label for="start-date-input">Start</label>
+                                    <input type="date" id="start-date-input">
+                                </div>
+                                <div class="input-group">
+                                    <label for="end-date-input">End</label>
+                                    <input type="date" id="end-date-input">
+                                </div>
+                                <button class="apply-date-btn" id="apply-custom-dates">Apply Range</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Contents Grid (12-Column Based Grid System) -->
+            <!-- View: Dashboard -->
+            <div id="view-dashboard" class="view-panel">
+                <div class="dashboard-grid">
+                    <!-- KPI Section (4 Cards of dynamic metrics) -->
+                    <!-- Card 1: Sales / Revenue -->
+                    <div class="grid-card kpi-card" id="kpi-revenue" data-drill="revenue" role="button" tabindex="0">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Total Revenue</span>
+                            <div class="kpi-icon-wrapper revenue-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-body">
+                            <h2 class="kpi-value" id="kpi-val-revenue">$0.00</h2>
+                            <span class="kpi-trend" id="kpi-trend-revenue">+0.0%</span>
+                        </div>
+                        <div class="kpi-footer">
+                            <span class="kpi-caption">Accumulated gross revenue</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Active Users -->
+                    <div class="grid-card kpi-card" id="kpi-users" data-drill="users" role="button" tabindex="0">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Active Customers</span>
+                            <div class="kpi-icon-wrapper users-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-body">
+                            <h2 class="kpi-value" id="kpi-val-users">0</h2>
+                            <span class="kpi-trend" id="kpi-trend-users">+0.0%</span>
+                        </div>
+                        <div class="kpi-footer">
+                            <span class="kpi-caption">Unique transactional buyers</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Conversion Rate -->
+                    <div class="grid-card kpi-card" id="kpi-conversion" data-drill="conversion" role="button" tabindex="0">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Avg Order Value</span>
+                            <div class="kpi-icon-wrapper conversion-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-body">
+                            <h2 class="kpi-value" id="kpi-val-conversion">$0.00</h2>
+                            <span class="kpi-trend" id="kpi-trend-conversion">+0.0%</span>
+                        </div>
+                        <div class="kpi-footer">
+                            <span class="kpi-caption">Mean ticket size per checkout</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Operations/Errors -->
+                    <div class="grid-card kpi-card" id="kpi-operations" data-drill="operations" role="button" tabindex="0">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Operations Health</span>
+                            <div class="kpi-icon-wrapper health-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-body">
+                            <h2 class="kpi-value" id="kpi-val-health">100%</h2>
+                            <span class="kpi-trend" id="kpi-trend-health">Normal</span>
+                        </div>
+                        <div class="kpi-footer">
+                            <span class="kpi-caption">Order processing completion rate</span>
+                        </div>
+                    </div>
+
+                    <!-- Placeholders for movable components -->
+                    <div id="db-revenue-chart-placeholder" class="main-chart-col">
+                        <!-- Primary Chart Panel (8 Columns) -->
+                        <div class="grid-card chart-card" style="height:100%;" id="revenue-chart-card">
+                            <div class="chart-header">
+                                <div class="chart-header-info">
+                                    <h3 class="chart-title">Revenue &amp; Cost Flow</h3>
+                                    <p class="chart-subtitle">Aggregate earnings trends against direct execution costs</p>
+                                </div>
+                                <div class="chart-actions">
+                                    <button class="chart-tab-btn active" data-range="day">Daily View</button>
+                                    <button class="chart-tab-btn" data-range="month">Weekly Trend</button>
+                                </div>
+                            </div>
+                            <div class="chart-body-wrapper">
+                                <!-- Actual Interactive Area Chart Container -->
+                                <div id="revenue-area-chart" class="real-chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="db-channel-chart-placeholder" class="distribution-chart-col">
+                        <!-- Secondary Distribution Panel (4 Columns) -->
+                        <div class="grid-card chart-card" style="height:100%;" id="channel-chart-card">
+                            <div class="chart-header">
+                                <div class="chart-header-info">
+                                    <h3 class="chart-title">Sales Channel Share</h3>
+                                    <p class="chart-subtitle">Sales contribution distribution by marketing channel</p>
+                                </div>
+                            </div>
+                            <div class="chart-body-wrapper doughnut-wrapper">
+                                <!-- Actual Interactive Doughnut Chart Container -->
+                                <div id="channel-doughnut-chart" class="real-chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="db-table-placeholder" class="full-width-col">
+                        <!-- Transactions Log listing (12 Columns) -->
+                        <div class="grid-card table-card" id="transactions-table-card">
+                            <div class="table-header">
+                                <div class="table-header-info">
+                                    <h3 class="table-title">Recent Transaction Logs</h3>
+                                    <p class="table-subtitle">Showing transaction invoices filtered and matched</p>
+                                </div>
+                                <div class="table-actions">
+                                    <button class="table-action-btn" id="export-csv-btn">
+                                        <svg class="btn-mini-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                        Export CSV
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Interactive logs grid wrapper -->
+                            <div class="table-responsive-wrapper">
+                                <table class="data-table" id="transactions-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="sortable" data-sort="id">Order ID <span class="sort-indicator"></span></th>
+                                            <th class="sortable" data-sort="customer">Customer <span class="sort-indicator"></span></th>
+                                            <th class="sortable" data-sort="date">Date <span class="sort-indicator"></span></th>
+                                            <th class="sortable" data-sort="category">Category <span class="sort-indicator"></span></th>
+                                            <th class="sortable text-right" data-sort="amount">Amount <span class="sort-indicator"></span></th>
+                                            <th class="sortable" data-sort="status">Status <span class="sort-indicator"></span></th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-rows">
+                                        <!-- Appended dynamically by Javascript -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination and Count Indicator -->
+                            <div class="table-footer-pagination">
+                                <span class="pagination-summary" id="table-summary-text">Showing 1 to 10 of 100 entries</span>
+                                <div class="pagination-nav">
+                                    <button class="pag-btn" id="pag-prev" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                    </button>
+                                    <span class="pag-current" id="pag-number">1</span>
+                                    <button class="pag-btn" id="pag-next">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: Analytics -->
+            <div id="view-analytics" class="view-panel hidden">
+                <div class="dashboard-grid">
+                    <!-- The charts will be dynamically moved here by JS -->
+                    <div id="anal-revenue-chart-placeholder" class="full-width-col"></div>
+                    <div id="anal-channel-chart-placeholder" class="full-width-col"></div>
+                </div>
+            </div>
+
+            <!-- View: Customers -->
+            <div id="view-users" class="view-panel hidden">
+                <div class="dashboard-grid">
+                    <div class="grid-card table-card full-width-col">
+                        <div class="table-header">
+                            <div class="table-header-info">
+                                <h3 class="table-title">Customer Ledger</h3>
+                                <p class="table-subtitle">Summary of buyer activity, order volumes, lifetime value, and preferred verticals</p>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-wrapper">
+                            <table class="data-table" id="customers-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Email</th>
+                                        <th class="text-center">Total Orders</th>
+                                        <th class="text-right">Total Spent</th>
+                                        <th class="text-right">Average Order</th>
+                                        <th>Preferred Vertical</th>
+                                        <th>Last Purchase</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customer-table-rows">
+                                    <!-- Appended dynamically by Javascript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer-pagination">
+                            <span class="pagination-summary" id="cust-table-summary-text">Showing 0 entries</span>
+                            <div class="pagination-nav">
+                                <button class="pag-btn" id="cust-pag-prev" disabled>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <span class="pag-current" id="cust-pag-number">1</span>
+                                <button class="pag-btn" id="cust-pag-next" disabled>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: Sales Logs -->
+            <div id="view-transactions" class="view-panel hidden">
+                <div class="dashboard-grid">
+                    <!-- The table card will be dynamically moved here by JS -->
+                    <div id="logs-table-placeholder" class="full-width-col"></div>
+                </div>
+            </div>
+
+            <!-- View: Settings -->
+            <div id="view-settings" class="view-panel hidden">
+                <div class="settings-grid">
+                    <!-- Card 1: Preferences -->
+                    <div class="grid-card settings-card">
+                        <h3 class="settings-section-title">General Preferences</h3>
+                        <div class="settings-form">
+                            <div class="setting-item">
+                                <label for="setting-currency">Display Currency</label>
+                                <select id="setting-currency" class="action-select">
+                                    <option value="USD" selected>USD ($)</option>
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="GBP">GBP (£)</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label for="setting-pagesize">Table Page Size</label>
+                                <select id="setting-pagesize" class="action-select">
+                                    <option value="5">5 records</option>
+                                    <option value="8" selected>8 records</option>
+                                    <option value="12">12 records</option>
+                                    <option value="20">20 records</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: System Management -->
+                    <div class="grid-card settings-card">
+                        <h3 class="settings-section-title">System &amp; Data Management</h3>
+                        <div class="settings-form">
+                            <div class="setting-item toggle-item">
+                                <div>
+                                    <div class="setting-label">Live Transaction Stream</div>
+                                    <div class="setting-desc">Simulate new real-time sales transactions arriving periodically</div>
+                                </div>
+                                <label class="switch-toggle">
+                                    <input type="checkbox" id="setting-simulation">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item" style="margin-top: 16px;">
+                                <button class="action-button danger-btn" id="setting-reseed-btn">
+                                    <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                    Reseed Mock Database
+                                </button>
+                                <p class="setting-desc" style="margin-top: 8px;">Regenerates all mock transaction logs with a fresh randomized seed dataset.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Backdrop Overlay (for closing sidebar/modal) -->
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- Drill-in Details Side Panel Drawer -->
+    <div class="drill-in-drawer" id="drill-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-headline">
+        <div class="drawer-header">
+            <div>
+                <h3 class="drawer-title" id="drawer-headline">Details Workspace</h3>
+                <p class="drawer-subtitle" id="drawer-subline">Advanced breakdown statistics</p>
+            </div>
+            <button class="close-drawer-btn" id="close-drawer" aria-label="Close details panel">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="drawer-content">
+            <!-- Dynamic KPI Summary details -->
+            <div class="drawer-meta-grid" id="drawer-meta">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Mini Trend Chart inside Drawer -->
+            <div class="drawer-chart-section">
+                <h4 class="drawer-section-title">Timeline Performance Chart</h4>
+                <div id="drawer-mini-chart" class="mini-chart-container"></div>
+            </div>
+
+            <!-- Logs / Checklist section inside Drawer -->
+            <div class="drawer-logs-section">
+                <h4 class="drawer-section-title" id="drawer-logs-title">System Event &amp; Access Log</h4>
+                <div class="drawer-logs-list" id="drawer-logs">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
