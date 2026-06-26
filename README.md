@@ -1,6 +1,6 @@
 # SyntecxHub UI/UX & Frontend Design Internship Portfolio
 
-Welcome to my frontend engineering and UI/UX design internship repository. This workspace hosts two high-fidelity, interactive projects that bridge the gap between design handoffs (like Figma) and pixel-perfect, interactive frontend implementations.
+Welcome to my frontend engineering and UI/UX design internship repository. This workspace hosts three high-fidelity, interactive projects that bridge the gap between design handoffs (like Figma) and pixel-perfect, interactive frontend implementations.
 
 Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase core programming skills, clean CSS architectures, state machines, and micro-animations without relying on heavy external frameworks.
 
@@ -12,6 +12,7 @@ Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase 
 | :--- | :--- | :--- |
 | **Project 1: Apex SaaS Landing Page & Design Spec Workspace** | Viewport simulator, layout grids, box-model spec calculator, runtime RGB-to-Hex translation, copy-ready code blocks, form validation. | [View Project 1 Directory](./Project1-Design-Landing-Page/) |
 | **Project 2: Zenith ANC Headphones E-Commerce Product Details** | E-commerce layout, Smart Animate overlay (300ms ease-out), sequential cart micro-interactions, Figma component property inspector, sidebar collapse. | [View Project 2 Directory](./Project2-E-Commerce-Product-Details-Page/) |
+| **Project 3: Aether Analytics Premium Dashboard UI** | Glassmorphic design, SPA navigation/views, interactive ApexCharts, client-side seeded database, KPI details drawer, settings and currency converter. | [View Project 3 Directory](./Project3-Dashboard-UI/) |
 
 ---
 
@@ -63,12 +64,36 @@ Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase 
 
 ---
 
+## 📊 Project 3: Aether Analytics — Premium Dashboard UI
+
+**Aether Analytics** is a premium, highly interactive, and responsive glassmorphic business intelligence analytics dashboard. Engineered with modern vanilla web technologies and integrated with **ApexCharts**, it offers a single-page experience containing custom routing, dynamic client-side querying, detailed KPI metrics breakdown drawers, localized currency conversion, and theme persistence.
+
+### Key Features
+*   **Premium Glassmorphic Design**: Sleek translucent panels with backdrop filters, subtle micro-interactions, responsive sizing, and modern typography (*Outfit* & *Inter* fonts).
+*   **Seeded Client-Side Database**: A localized data generator creating consistent, multi-category, 90-day transaction history with reproducible seeded inputs.
+*   **Interactive Charting Engine**: Integrates ApexCharts to plot dual-axis area graphs (Revenue & Cost trends) and category sales share charts dynamically responding to filters.
+*   **Drill-Down Details Drawers**: Selecting any KPI card or transaction audit detail slides out a comprehensive metrics breakdown sheet and transaction log timeline.
+*   **Dynamic Settings & Currency Converter**: Allows modifying display currencies (USD, EUR, GBP), table page sizes, database seeding, and real-time transaction streaming, instantly recalculating all values on-the-fly.
+*   **SPA Navigation & Table Filtering**: Custom client-side router swaps between Analytics, Sales Logs, and Customer Ledger views, with robust searching, filtering, and paging.
+
+### Screenshot Showcase
+![Dashboard Overview Dark](./Project3-Dashboard-UI/screenshots/dashboard_overview_dark.png)
+*Aether Analytics Premium Dashboard in Dark Mode showing the primary widgets and charts*
+
+| Light Mode Overview | Analytics Workspace | KPI Metric Details Drawer |
+| :---: | :---: | :---: |
+| ![Dashboard Overview Light](./Project3-Dashboard-UI/screenshots/dashboard_overview_light.png) | ![Analytics Workspace](./Project3-Dashboard-UI/screenshots/analytics_workspace.png) | ![KPI Metric Drawer](./Project3-Dashboard-UI/screenshots/kpi_metric_drawer.png) |
+
+👉 **Open Project 3**: [Project3-Dashboard-UI/index.html](./Project3-Dashboard-UI/index.html)
+
+---
+
 ## ⚙️ How to Run Locally
 
-Since both projects consist of static client-side files, you do not need build steps, bundling, or packages installed. 
+Since these projects consist of static client-side files, you do not need build steps, bundling, or complex packages. 
 
 ### Method 1: Direct File Launch (Easiest)
-Navigate into either project folder and double-click the `index.html` file to open and preview the interactive page in your browser directly.
+Navigate into any project folder and double-click the `index.html` file to open and preview the interactive page in your browser directly.
 
 ### Method 2: Launch Local HTTP Server
 If you want to serve the files over a local web port (e.g. `localhost:8080`), open your terminal in the repository root folder:
@@ -82,13 +107,22 @@ npx.cmd http-server -p 8080
 ```bash
 python -m http.server 8080
 ```
-Then open `http://localhost:8080` in your web browser and click on either project folder to load it.
+Then open `http://localhost:8080` in your web browser and click on any project folder to load it.
+
+### Method 3: NPM Live Server (Project 3 Dedicated)
+If you want to run the dedicated dev server for the dashboard project, run:
+```bash
+cd Project3-Dashboard-UI
+npm run dev
+```
+Then visit [http://localhost:3000](http://localhost:3000).
 
 ---
 
 ## 🎓 Skills Demonstrated
 
-*   **Semantic HTML5 & DOM Architecture**: Structuring canvas simulators and product screens using native DOM templates.
-*   **Modern CSS3 Layouts & Animations**: Creating layouts using custom properties (variables), flexible box layouts, grid tracks, container queries, backdrop filters, and keyframe animations.
-*   **Vanilla JavaScript State Machines**: Implementing state transitions, asynchronous event loops (sequential timeouts), regular expressions, and bi-directional element binding.
-*   **Interactive Prototyping**: Replicating complex UI interactions (Smart Animate, collapsibles, custom loaders, modal overlays) based on design tools specifications.
+*   **Semantic HTML5 & DOM Architecture**: Structuring canvas simulators, product screens, and responsive dashboard grids using native DOM elements and semantic layouts.
+*   **Modern CSS3 Layouts & Animations**: Creating layout systems using custom properties (variables), flexible box layouts, grid tracks, container queries, backdrop filters, glassmorphic styles, light/dark themes, and keyframe animations.
+*   **Vanilla JavaScript State Machines & Routing**: Implementing state transitions, client-side routing, asynchronous event loops, regular expressions, and bi-directional element binding.
+*   **Interactive Prototyping**: Replicating complex UI interactions (Smart Animate, collapsibles, custom loaders, slide-out details drawers, modal overlays) based on design specs.
+*   **Data Visualization & Seeded Engines**: Implementing interactive charts utilizing ApexCharts, coordinating theme adjustments and real-time updates based on user filters; developing local seed-based database query engines.
