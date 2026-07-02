@@ -1,6 +1,6 @@
 # SyntecxHub UI/UX & Frontend Design Internship Portfolio
 
-Welcome to my frontend engineering and UI/UX design internship repository. This workspace hosts three high-fidelity, interactive projects that bridge the gap between design handoffs (like Figma) and pixel-perfect, interactive frontend implementations.
+Welcome to my frontend engineering and UI/UX design internship repository. This workspace hosts four high-fidelity, interactive projects that bridge the gap between design handoffs (like Figma) and pixel-perfect, interactive frontend implementations.
 
 Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase core programming skills, clean CSS architectures, state machines, and micro-animations without relying on heavy external frameworks.
 
@@ -13,6 +13,7 @@ Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase 
 | **Project 1: Apex SaaS Landing Page & Design Spec Workspace** | Viewport simulator, layout grids, box-model spec calculator, runtime RGB-to-Hex translation, copy-ready code blocks, form validation. | [View Project 1 Directory](./Project1-Design-Landing-Page/) |
 | **Project 2: Zenith ANC Headphones E-Commerce Product Details** | E-commerce layout, Smart Animate overlay (300ms ease-out), sequential cart micro-interactions, Figma component property inspector, sidebar collapse. | [View Project 2 Directory](./Project2-E-Commerce-Product-Details-Page/) |
 | **Project 3: Aether Analytics Premium Dashboard UI** | Glassmorphic design, SPA navigation/views, interactive ApexCharts, client-side seeded database, KPI details drawer, settings and currency converter. | [View Project 3 Directory](./Project3-Dashboard-UI/) |
+| **Project 4: Nebula Pay & Smart Space Interactive Prototype** | Bezel-less mobile mockup, biometric scan sequence, 3D card deck carousel, staggered action menu (+), 3D flip card, path-morphing SVG chart, environment widgets, haptic interactive sandbox. | [View Project 4 Directory](./Project4-Advanced-Interactive-Prototype/) |
 
 ---
 
@@ -85,6 +86,30 @@ Each project is built using **Vanilla HTML5, CSS3, and JavaScript** to showcase 
 | ![Dashboard Overview Light](./Project3-Dashboard-UI/screenshots/dashboard_overview_light.png) | ![Analytics Workspace](./Project3-Dashboard-UI/screenshots/analytics_workspace.png) | ![KPI Metric Drawer](./Project3-Dashboard-UI/screenshots/kpi_metric_drawer.png) |
 
 👉 **Open Project 3**: [Project3-Dashboard-UI/index.html](./Project3-Dashboard-UI/index.html)
+
+---
+
+## 🌌 Project 4: Nebula Pay & Smart Space — Advanced Interactive UI Showcase
+
+**Nebula Pay & Smart Space** is an ultra-premium, high-fidelity UX/UI Interactive Prototyping Showcase and Playground. Built as a self-contained Single Page Application (SPA), it serves as a portfolio-ready demonstration of fine-tuned micro-interactions, 3D CSS transforms, custom timing easing curves, dynamic SVG path morphs, and environment automation.
+
+### Key Features
+*   **Biometric Login Screen & Entry Gate**: Click the Face ID scanner icon to initiate a 1.5-second scanning sequence (rotating glow, laser sweep). On success, it displays a green checkmark and automatically triggers a smooth page transition.
+*   **Cyber Finance Dashboard**: Features a 3D Wealth Card Deck Carousel, a Staggered Floating Actions Menu (+) that rotates 135 degrees, and bullet bulb toggle switches.
+*   **Credit Card Manager**: Integrates a 3D flip credit card (revealing CVV details on back Y-axis rotation), gradient aesthetic selector bubbles, and a privacy obfuscation toggle.
+*   **Advanced SVG Spendings Chart**: Native browser SVG path-interpolation that morphs paths smoothly between weekly, monthly, and yearly datasets when filter tags are clicked.
+*   **Smart Space Workspace**: Controls light dimmer luminance range sliders (with scaling blur glow), vinyl record spin play/pause deceleration, and a haptic huff bouncing audio equalizer.
+*   **Interactive Component Sandbox**: Isolated haptic and interactive states like transaction loading-to-success buttons, magnetic tactile glows following cursor translations, and spawning toast notification nodes.
+
+### Screenshot Showcase
+![Nebula Pay & Smart Space Home](./Project4-Advanced-Interactive-Prototype/screenshots/02-dashboard-main-view.png)
+*Nebula Pay Home Dashboard inside the high-fidelity bezel-less mobile phone viewport frame*
+
+| Biometric Login Gate | Credit Card Manager | SVG Spendings Chart | Smart Vinyl Media Player | Component Sandbox |
+| :---: | :---: | :---: | :---: | :---: |
+| ![Face ID login](./Project4-Advanced-Interactive-Prototype/screenshots/01-biometric-login-view.png) | ![Card Manager](./Project4-Advanced-Interactive-Prototype/screenshots/05-card-color-customization.png) | ![Spendings Chart](./Project4-Advanced-Interactive-Prototype/screenshots/11-spendings-chart-trends.png) | ![Vinyl Player](./Project4-Advanced-Interactive-Prototype/screenshots/07-smart-workspace-media.png) | ![Sandbox](./Project4-Advanced-Interactive-Prototype/screenshots/09-sandbox-button-success.png) |
+
+👉 **Open Project 4**: [Project4-Advanced-Interactive-Prototype/index.html](./Project4-Advanced-Interactive-Prototype/index.html)
 
 ---
 
