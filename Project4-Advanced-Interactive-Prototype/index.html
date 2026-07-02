@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nebula Pay & Smart Space | Interactive Prototype Showcase</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Vanilla CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="theme-cyberpunk">
+  
+  <!-- Interactive Presentation Canvas -->
+  <main class="showcase-canvas">
+    
+    <!-- Sidebar Control Panel -->
+    <aside class="control-panel">
+      <header class="panel-header">
+        <div class="logo-area">
+          <div class="logo-icon"><i data-lucide="orbit"></i></div>
+          <div>
+            <h1 class="logo-title">NEBULA</h1>
+            <p class="logo-subtitle">Interaction Playground</p>
+          </div>
+        </div>
+        <p class="panel-intro">Explore fine-tuned micro-interactions, spring physics easing, and dynamic state transitions in real-time.</p>
+      </header>
+
+      <!-- Physics & Timing Settings -->
+      <section class="control-section">
+        <h2 class="section-title"><i data-lucide="sliders"></i> Transition Easing & Speed</h2>
+        
+        <div class="control-group">
+          <div class="slider-header">
+            <label for="speed-slider">Transition Duration</label>
+            <span id="speed-val" class="badge">400ms</span>
+          </div>
+          <input type="range" id="speed-slider" min="100" max="2000" step="50" value="400" class="custom-slider">
+        </div>
+
+        <div class="control-group">
+          <label for="easing-select">Easing Preset</label>
+          <div class="select-wrapper">
+            <select id="easing-select" class="custom-select">
+              <option value="spring-elastic">Cubic Bezier: Spring Elastic</option>
+              <option value="soft-anticipate">Cubic Bezier: Soft Anticipate</option>
+              <option value="snappy-out" selected>Cubic Bezier: Snappy Ease-Out</option>
+              <option value="smooth-inout">Cubic Bezier: Smooth Ease-InOut</option>
+              <option value="linear">Linear: Uniform Motion</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="easing-formula" class="easing-display-math">
+          cubic-bezier(0.19, 1, 0.22, 1)
+        </div>
+      </section>
+
+      <!-- Customization Themes -->
+      <section class="control-section">
+        <h2 class="section-title"><i data-lucide="palette"></i> Design Theme</h2>
+        <div class="theme-grid">
+          <button class="theme-btn active" data-theme="cyberpunk" style="--btn-color: #ff007f;">
+            <span class="theme-dot"></span> Cyberpunk
+          </button>
+          <button class="theme-btn" data-theme="glassmorphic" style="--btn-color: #00f0ff;">
+            <span class="theme-dot"></span> Frost Glass
+          </button>
+          <button class="theme-btn" data-theme="sunset" style="--btn-color: #ff5e36;">
+            <span class="theme-dot"></span> Sunset Glow
+          </button>
+          <button class="theme-btn" data-theme="emerald" style="--btn-color: #10b981;">
+            <span class="theme-dot"></span> Emerald Forest
+          </button>
+        </div>
+      </section>
+
+      <!-- Debug & Motion Trails -->
+      <section class="control-section">
+        <h2 class="section-title"><i data-lucide="construction"></i> Inspection & Debug</h2>
+        <div class="debug-toggles">
+          <label class="toggle-control">
+            <input type="checkbox" id="toggle-slowmo">
+            <span class="toggle-slider"></span>
+            <span class="toggle-label"><i data-lucide="gauge"></i> Slow-Mo Mode (0.25x)</span>
+          </label>
+          <label class="toggle-control">
+            <input type="checkbox" id="toggle-trails">
+            <span class="toggle-slider"></span>
+            <span class="toggle-label"><i data-lucide="route"></i> Motion Guides & Outlines</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Portfolio Export Console -->
+      <section class="control-section console-section">
+        <h2 class="section-title"><i data-lucide="video"></i> Portfolio Exporter</h2>
+        <p class="console-desc">Generate optimized recording frames and micro-interaction specs for showcase.</p>
+        <button id="export-btn" class="export-btn">
+          <span class="btn-text">Generate Export Pack</span>
+          <i data-lucide="download"></i>
+        </button>
+        <div class="export-console">
+          <div class="console-line">> System Idle. Waiting for trigger.</div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Center/Right Area: Floating Device Mockup -->
+    <section class="device-viewport">
+      <div class="device-glow"></div>
+      
+      <!-- High-fidelity Bezel-less Mobile Phone Frame -->
+      <div class="phone-frame">
+        <div class="phone-speaker"></div>
+        <div class="phone-camera"></div>
+        
+        <!-- Status Bar -->
+        <header class="status-bar">
+          <span class="status-time">09:41</span>
+          <div class="status-indicators">
+            <i data-lucide="signal" class="indicator-icon"></i>
+            <i data-lucide="wifi" class="indicator-icon"></i>
+            <div class="battery-icon">
+              <span class="battery-level"></span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dynamic Screen Content Shell -->
+        <div class="screen-container">
+          
+          <!-- ================= SCREEN 1: BIOMETRIC LOGIN ================= -->
+          <div class="app-screen active" id="screen-login">
+            <div class="login-wrapper">
+              <div class="app-logo">
+                <i data-lucide="orbit" class="spinner-logo"></i>
+                <h2>NEBULA SPACE</h2>
+                <p>Secure Interface Node</p>
+              </div>
+
+              <!-- Facial ID scanner visualizer -->
+              <div class="faceid-container">
+                <div class="scan-grid"></div>
+                <div class="scan-laser"></div>
+                <div class="faceid-icon-holder" id="faceid-trigger">
+                  <i data-lucide="scan-face" class="auth-face"></i>
+                  <i data-lucide="fingerprint" class="auth-fingerprint hide"></i>
+                  <i data-lucide="check" class="auth-check hide"></i>
+                  <i data-lucide="lock" class="auth-lock hide"></i>
+                </div>
+                <div class="pulse-ring"></div>
+              </div>
+
+              <div class="auth-status" id="auth-status-msg">Tap Face ID Scanner to authenticate</div>
+
+              <div class="numeric-keypad">
+                <div class="pin-display">
+                  <span class="pin-dot"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-dot"></span>
+                  <span class="pin-dot"></span>
+                </div>
+                <div class="keypad-grid">
+                  <button class="key-btn" data-val="1">1</button>
+                  <button class="key-btn" data-val="2">2</button>
+                  <button class="key-btn" data-val="3">3</button>
+                  <button class="key-btn" data-val="4">4</button>
+                  <button class="key-btn" data-val="5">5</button>
+                  <button class="key-btn" data-val="6">6</button>
+                  <button class="key-btn" data-val="7">7</button>
+                  <button class="key-btn" data-val="8">8</button>
+                  <button class="key-btn" data-val="9">9</button>
+                  <button class="key-btn empty"></button>
+                  <button class="key-btn" data-val="0">0</button>
+                  <button class="key-btn delete-btn" data-val="del"><i data-lucide="delete"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= SCREEN 2: CYBER DASHBOARD ================= -->
+          <div class="app-screen" id="screen-dashboard">
+            <header class="app-header">
+              <div class="user-profile">
+                <div class="avatar">
+                  <span class="avatar-glow"></span>
+                  <span class="avatar-letters">MG</span>
+                </div>
+                <div>
+                  <p class="greeting">Welcome back,</p>
+                  <h3 class="username">Mariam Gamal</h3>
+                </div>
+              </div>
+              <button class="notif-btn" id="trigger-notif">
+                <i data-lucide="bell"></i>
+                <span class="notif-badge"></span>
+              </button>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Wealth Card Carousel -->
+              <div class="card-carousel">
+                <div class="carousel-track">
+                  <div class="carousel-card active-card" id="deck-card-1" data-card-index="0" style="--card-color: linear-gradient(135deg, #a855f7, #6366f1)">
+                    <div class="card-lines"></div>
+                    <div class="card-top">
+                      <span>Nebula Premium</span>
+                      <i data-lucide="nfc"></i>
+                    </div>
+                    <div class="card-middle">
+                      <span class="card-balance-label">Total Balance</span>
+                      <h4 class="card-balance-val">$48,250.00</h4>
+                    </div>
+                    <div class="card-bottom">
+                      <span>**** 9081</span>
+                      <span class="card-type">VISA</span>
+                    </div>
+                  </div>
+                  <div class="carousel-card next-card" id="deck-card-2" data-card-index="1" style="--card-color: linear-gradient(135deg, #ec4899, #f43f5e)">
+                    <div class="card-lines"></div>
+                    <div class="card-top">
+                      <span>Nebula Gold</span>
+                      <i data-lucide="nfc"></i>
+                    </div>
+                    <div class="card-middle">
+                      <span class="card-balance-label">Total Balance</span>
+                      <h4 class="card-balance-val">$12,890.50</h4>
+                    </div>
+                    <div class="card-bottom">
+                      <span>**** 4522</span>
+                      <span class="card-type">MC</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-indicators">
+                  <span class="ind-dot active"></span>
+                  <span class="ind-dot"></span>
+                </div>
+              </div>
+
+              <!-- Quick Operations -->
+              <div class="operations-grid">
+                <button class="op-button" id="btn-quick-transfer">
+                  <div class="op-icon-container"><i data-lucide="send"></i></div>
+                  <span>Transfer</span>
+                </button>
+                <button class="op-button" id="btn-quick-analytics">
+                  <div class="op-icon-container"><i data-lucide="trending-up"></i></div>
+                  <span>Analytics</span>
+                </button>
+                <button class="op-button" id="btn-quick-smart">
+                  <div class="op-icon-container"><i data-lucide="home"></i></div>
+                  <span>Smart Controls</span>
+                </button>
+                <button class="op-button" id="btn-quick-cards">
+                  <div class="op-icon-container"><i data-lucide="credit-card"></i></div>
+                  <span>Cards</span>
+                </button>
+              </div>
+
+              <!-- Smart Home Status Widget -->
+              <div class="dashboard-widget smart-widget">
+                <div class="widget-header">
+                  <h4>Smart Space Workspace</h4>
+                  <span class="widget-status active">Connected</span>
+                </div>
+                <div class="widget-controls">
+                  <div class="smart-toggle-item">
+                    <span class="toggle-name">Neon Ambient</span>
+                    <button class="spring-toggle active" id="toggle-ambient">
+                      <span class="toggle-switch-handle"></span>
+                    </button>
+                  </div>
+                  <div class="smart-toggle-item">
+                    <span class="toggle-name">Work Station</span>
+                    <button class="spring-toggle" id="toggle-workstation">
+                      <span class="toggle-switch-handle"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent Activity List -->
+              <div class="activity-section">
+                <div class="section-header">
+                  <h4>Recent Transactions</h4>
+                  <button class="view-all-link">See all</button>
+                </div>
+                <div class="activity-list">
+                  <div class="activity-item">
+                    <div class="item-icon bg-cyan"><i data-lucide="shopping-bag"></i></div>
+                    <div class="item-details">
+                      <h5>App Store Purchase</h5>
+                      <p>Entertainment • Today</p>
+                    </div>
+                    <span class="item-amount negative">-$14.99</span>
+                  </div>
+                  <div class="activity-item">
+                    <div class="item-icon bg-purple"><i data-lucide="arrow-down-left"></i></div>
+                    <div class="item-details">
+                      <h5>Funds Deposit</h5>
+                      <p>External Transfer • Yesterday</p>
+                    </div>
+                    <span class="item-amount positive">+$2,400.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Action Wheel Button -->
+            <div class="floating-action-container" id="floating-action-menu">
+              <button class="fab-main-btn" id="fab-trigger">
+                <i data-lucide="plus"></i>
+              </button>
+              <div class="fab-wheel-options">
+                <button class="fab-sub-btn" data-tooltip="Quick Pay" style="--item-index: 1;"><i data-lucide="qr-code"></i></button>
+                <button class="fab-sub-btn" data-tooltip="Request Funds" style="--item-index: 2;"><i data-lucide="arrow-down-to-dot"></i></button>
+                <button class="fab-sub-btn" data-tooltip="Lock Node" style="--item-index: 3;" id="fab-lock"><i data-lucide="lock"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= SCREEN 3: CARD DETAILS ================= -->
+          <div class="app-screen" id="screen-cards">
+            <header class="app-header-back">
+              <button class="back-btn" data-target="screen-dashboard"><i data-lucide="chevron-left"></i></button>
+              <h3>Card Manager</h3>
+              <div style="width: 24px;"></div>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Flip Credit Card Area -->
+              <div class="flip-card-container">
+                <div class="flip-card-inner" id="interactive-flip-card">
+                  <!-- Front Side -->
+                  <div class="flip-card-front" style="--card-bg-gradient: linear-gradient(135deg, #a855f7, #6366f1)">
+                    <div class="card-mesh"></div>
+                    <div class="card-header-line">
+                      <span class="card-logo-txt">NEBULA PLATINUM</span>
+                      <i data-lucide="cpu" class="chip-icon"></i>
+                    </div>
+                    <div class="card-middle-line">
+                      <p class="card-number-large" id="detail-card-number">•••• •••• •••• 9081</p>
+                    </div>
+                    <div class="card-footer-line">
+                      <div>
+                        <p class="footer-label">CARDHOLDER</p>
+                        <p class="footer-val">MARIAM GAMAL</p>
+                      </div>
+                      <div>
+                        <p class="footer-label">EXPIRES</p>
+                        <p class="footer-val">12 / 29</p>
+                      </div>
+                      <div class="card-issuer-icon">VISA</div>
+                    </div>
+                  </div>
+                  <!-- Back Side -->
+                  <div class="flip-card-back">
+                    <div class="card-magnetic-strip"></div>
+                    <div class="card-cvv-strip">
+                      <span class="cvv-signature">Mariam Gamal</span>
+                      <span class="cvv-digits" id="detail-card-cvv">342</span>
+                    </div>
+                    <div class="back-info">
+                      <p>Authorized Signature. Not transferable. Secured by Nebula Node.</p>
+                      <p class="support-num">Support: +1 (800) NEBULA-0</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="flip-hint"><i data-lucide="rotate-3d"></i> Tap credit card to flip 3D</p>
+
+              <!-- Card Options and Customizations -->
+              <div class="card-customization-box">
+                <h4>Customize Card Aesthetic</h4>
+                <div class="card-gradient-picker">
+                  <button class="grad-picker-btn active" style="background: linear-gradient(135deg, #a855f7, #6366f1)" data-grad="linear-gradient(135deg, #a855f7, #6366f1)"></button>
+                  <button class="grad-picker-btn" style="background: linear-gradient(135deg, #ec4899, #f43f5e)" data-grad="linear-gradient(135deg, #ec4899, #f43f5e)"></button>
+                  <button class="grad-picker-btn" style="background: linear-gradient(135deg, #f59e0b, #e11d48)" data-grad="linear-gradient(135deg, #f59e0b, #e11d48)"></button>
+                  <button class="grad-picker-btn" style="background: linear-gradient(135deg, #06b6d4, #3b82f6)" data-grad="linear-gradient(135deg, #06b6d4, #3b82f6)"></button>
+                  <button class="grad-picker-btn" style="background: linear-gradient(135deg, #10b981, #059669)" data-grad="linear-gradient(135deg, #10b981, #059669)"></button>
+                </div>
+              </div>
+
+              <!-- Secure Settings Toggles -->
+              <div class="settings-list">
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <i data-lucide="shield-alert"></i>
+                    <div>
+                      <h5>Freeze Card Node</h5>
+                      <p>Temporarily block all activities</p>
+                    </div>
+                  </div>
+                  <button class="spring-toggle" id="toggle-freeze">
+                    <span class="toggle-switch-handle"></span>
+                  </button>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <i data-lucide="eye-off"></i>
+                    <div>
+                      <h5>Mask Card Number</h5>
+                      <p>Obfuscate main digits on UI</p>
+                    </div>
+                  </div>
+                  <button class="spring-toggle active" id="toggle-mask">
+                    <span class="toggle-switch-handle"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= SCREEN 4: ANALYTICS ================= -->
+          <div class="app-screen" id="screen-analytics">
+            <header class="app-header-back">
+              <button class="back-btn" data-target="screen-dashboard"><i data-lucide="chevron-left"></i></button>
+              <h3>Analytics</h3>
+              <div style="width: 24px;"></div>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Animated Spendings Chart Area -->
+              <div class="chart-container">
+                <div class="chart-header-row">
+                  <div>
+                    <span class="chart-title-lbl">Spending Summary</span>
+                    <h3 class="chart-total-amount" id="chart-total-text">$1,240.00</h3>
+                  </div>
+                  <div class="chart-trend positive">
+                    <i data-lucide="arrow-up-right"></i>
+                    <span>-4.2%</span>
+                  </div>
+                </div>
+
+                <div class="chart-canvas-wrapper">
+                  <!-- Custom SVG Chart for path morphing -->
+                  <svg id="spendings-chart" viewBox="0 0 300 150">
+                    <defs>
+                      <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.3"></stop>
+                        <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                    <!-- Area Fill Path -->
+                    <path class="chart-area-path" id="chart-area" d="M 10 140 L 10 140 L 290 140 Z" fill="url(#chart-grad)"></path>
+                    <!-- Main Line Path -->
+                    <path class="chart-line-path" id="chart-line" d="M 10 140 L 10 140 L 290 140" fill="none" stroke="var(--accent-primary)" stroke-width="3" stroke-linecap="round"></path>
+                    
+                    <!-- Dynamic Glowing Data Dots -->
+                    <g id="chart-dots"></g>
+                  </svg>
+                  
+                  <!-- Tooltip Overlay element -->
+                  <div class="chart-tooltip" id="chart-tooltip">
+                    <span class="tooltip-val">$240</span>
+                  </div>
+                </div>
+
+                <!-- Filter Controls with Sliding Selection Accent -->
+                <div class="filter-tabs-container">
+                  <span class="active-tab-indicator" id="filter-indicator"></span>
+                  <button class="filter-tab-btn active" data-filter="week" style="--tab-idx: 0;">Weekly</button>
+                  <button class="filter-tab-btn" data-filter="month" style="--tab-idx: 1;">Monthly</button>
+                  <button class="filter-tab-btn" data-filter="year" style="--tab-idx: 2;">Yearly</button>
+                </div>
+              </div>
+
+              <!-- Top Spend Categories -->
+              <div class="spending-breakdown">
+                <h4>Top Categories</h4>
+                <div class="category-bars">
+                  <div class="cat-bar-item" style="--cat-delay: 0;">
+                    <div class="cat-lbl-row">
+                      <span>Cyber Shopping</span>
+                      <span>45%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 45%; --bar-color: #ff007f;"></div>
+                    </div>
+                  </div>
+                  <div class="cat-bar-item" style="--cat-delay: 1;">
+                    <div class="cat-lbl-row">
+                      <span>Smart Utilities</span>
+                      <span>30%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 30%; --bar-color: #00f0ff;"></div>
+                    </div>
+                  </div>
+                  <div class="cat-bar-item" style="--cat-delay: 2;">
+                    <div class="cat-lbl-row">
+                      <span>Server Subscriptions</span>
+                      <span>25%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 25%; --bar-color: #a855f7;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= SCREEN 5: SMART SPACE ================= -->
+          <div class="app-screen" id="screen-smart">
+            <header class="app-header-back">
+              <button class="back-btn" data-target="screen-dashboard"><i data-lucide="chevron-left"></i></button>
+              <h3>Smart Workspace</h3>
+              <div style="width: 24px;"></div>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Radial Glow Bulb Widget -->
+              <div class="smart-bulb-display">
+                <div class="bulb-halo" id="bulb-glow-halo"></div>
+                <div class="bulb-icon-box">
+                  <i data-lucide="lightbulb" class="bulb-svg" id="bulb-element"></i>
+                </div>
+                <span class="bulb-status-txt" id="dimmer-percentage">Brightness: 80%</span>
+              </div>
+
+              <!-- Tactical Ambient Dimmer Slider -->
+              <div class="dimmer-box">
+                <label for="bulb-dimmer">Light Dimmer Intensity</label>
+                <div class="dimmer-input-wrapper">
+                  <input type="range" id="bulb-dimmer" min="0" max="100" value="80" class="dimmer-slider">
+                  <span class="bubble-indicator" id="dimmer-bubble">80</span>
+                </div>
+              </div>
+
+              <!-- Cyber Media Player -->
+              <div class="media-player-box">
+                <div class="player-visual-area">
+                  <div class="vinyl-record" id="vinyl-disc">
+                    <div class="vinyl-center"></div>
+                  </div>
+                  <!-- Soundwave Bar Animation -->
+                  <div class="sound-wave-bars" id="audio-wave">
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                  </div>
+                </div>
+
+                <div class="track-details">
+                  <h4 class="track-title">Synthesized Dreams</h4>
+                  <p class="track-artist">Lofi Cypher Node</p>
+                </div>
+
+                <div class="playback-controls">
+                  <button class="media-btn-small"><i data-lucide="skip-back"></i></button>
+                  <button class="media-btn-large play-pause-btn" id="play-pause-trigger">
+                    <i data-lucide="play" class="play-icon"></i>
+                    <i data-lucide="pause" class="pause-icon hide"></i>
+                  </button>
+                  <button class="media-btn-small"><i data-lucide="skip-forward"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= SCREEN 6: SANDBOX ================= -->
+          <div class="app-screen" id="screen-sandbox">
+            <header class="app-header-back">
+              <button class="back-btn" data-target="screen-dashboard"><i data-lucide="chevron-left"></i></button>
+              <h3>Component Sandbox</h3>
+              <div style="width: 24px;"></div>
+            </header>
+
+            <div class="screen-content scrollable">
+              
+              <!-- Micro-Interaction Buttons -->
+              <div class="sandbox-widget">
+                <h4>Dynamic Button States</h4>
+                <div class="sandbox-btns-col">
+                  <!-- Loading checkmark button -->
+                  <button class="interactive-action-btn" id="sandbox-load-btn">
+                    <span class="btn-state-idle">Verify Transaction Node</span>
+                    <span class="btn-state-loading hide"><i data-lucide="loader" class="spin-icon"></i> Processing</span>
+                    <span class="btn-state-success hide"><i data-lucide="check-circle-2"></i> Verified</span>
+                  </button>
+                  
+                  <!-- Magnetic Glow Button -->
+                  <button class="magnetic-btn-glow" id="sandbox-magnetic-btn">
+                    <span>Magnetic Tactile Glow</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Elastic Switch Widget -->
+              <div class="sandbox-widget">
+                <h4>Elastic Springs</h4>
+                <div class="sandbox-toggle-row">
+                  <span>Haptic Engine Feedback</span>
+                  <button class="spring-toggle active" id="sandbox-spring-1">
+                    <span class="toggle-switch-handle"></span>
+                  </button>
+                </div>
+                <div class="sandbox-toggle-row">
+                  <span>Quantum Telemetry Log</span>
+                  <button class="spring-toggle" id="sandbox-spring-2">
+                    <span class="toggle-switch-handle"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Input Fields and Floating Labels -->
+              <div class="sandbox-widget">
+                <h4>Input Floating States</h4>
+                <div class="sandbox-form-inputs">
+                  <div class="floating-input-group">
+                    <input type="text" id="sec-node-id" class="float-input" required placeholder=" ">
+                    <label for="sec-node-id" class="float-label">Security Node ID</label>
+                    <span class="focus-glow-border"></span>
+                  </div>
+                  <div class="floating-input-group">
+                    <input type="password" id="sec-passphrase" class="float-input" required placeholder=" ">
+                    <label for="sec-passphrase" class="float-label">Quantum Passphrase</label>
+                    <span class="focus-glow-border"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Toast Spawn Emitter -->
+              <div class="sandbox-widget">
+                <h4>Toast Notifications</h4>
+                <div class="toast-trigger-grid">
+                  <button class="toast-trigger bg-cyan" data-type="success"><i data-lucide="info"></i> Info</button>
+                  <button class="toast-trigger bg-purple" data-type="alert"><i data-lucide="alert-triangle"></i> Warning</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Navigation Bar (Persistent across authenticated screens) -->
+          <nav class="bottom-nav hide" id="global-bottom-nav">
+            <button class="nav-item active" data-screen="screen-dashboard">
+              <i data-lucide="layout-grid"></i>
+              <span>Home</span>
+            </button>
+            <button class="nav-item" data-screen="screen-analytics">
+              <i data-lucide="trending-up"></i>
+              <span>Trends</span>
+            </button>
+            <button class="nav-item" data-screen="screen-cards">
+              <i data-lucide="credit-card"></i>
+              <span>Cards</span>
+            </button>
+            <button class="nav-item" data-screen="screen-smart">
+              <i data-lucide="home"></i>
+              <span>Smart</span>
+            </button>
+            <button class="nav-item" data-screen="screen-sandbox">
+              <i data-lucide="cog"></i>
+              <span>Sandbox</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notification Stack Container -->
+  <div class="toast-container" id="global-toast-container"></div>
+
+  <!-- Vanilla JS Controller Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
